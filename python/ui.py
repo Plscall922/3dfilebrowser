@@ -1,6 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QSplitter, QFileSystemModel, QTreeView, QVBoxLayout, QWidget
 from PyQt5.QtCore import Qt
+from .glwidget import GLWidget
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -20,7 +21,7 @@ class MainWindow(QMainWindow):
         splitter.addWidget(self.tree)
 
         # 3D Viewer placeholder
-        self.viewer = QWidget()
+        self.viewer = GLWidget()
         splitter.addWidget(self.viewer)
 
         self.setCentralWidget(splitter)

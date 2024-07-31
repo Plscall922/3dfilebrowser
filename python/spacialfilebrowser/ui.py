@@ -32,8 +32,9 @@ class MainWindow(QMainWindow):
     def on_selection_changed(self, selected, deselected):
         index = self.tree.selectionModel().currentIndex()
         file_path = self.model.filePath(index)
-        if file_path.endswith(('.obj', '.dae', '.3ds')):
+        if file_path.endswith(('.obj', '.dae', '.stl', '.ply')):
             self.viewer.loadModel(file_path)
+
 
 
 if __name__ == "__main__":

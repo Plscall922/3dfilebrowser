@@ -2,7 +2,7 @@ from OpenGL.GL import *
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from PyQt5.QtOpenGL import QGLWidget
-import pyassimp
+import trimesh
 
 class GLWidget(QGLWidget):
     def __init__(self, parent=None):
@@ -14,9 +14,7 @@ class GLWidget(QGLWidget):
         glEnable(GL_DEPTH_TEST)
 
     def loadModel(self, file_path):
-        scene = pyassimp.load(file_path)
-        self.model = scene.meshes[0] if scene.meshes else None
-        pyassimp.release(scene)
+        self.model = trimesh.load(file_path)
         self.update()
 
     def paintGL(self):
@@ -26,10 +24,11 @@ class GLWidget(QGLWidget):
         if self.model:
             glBegin(GL_TRIANGLES)
             for face in self.model.faces:
-                for index in face:
-                    vertex = self.model.vertices[index]
-                    glVertex3f(vertex[0], vertex[1], vertex[2])
+                for vertex in face:
+                    vertex_coords = self.model.vertices[vertex]
+                    glVertex3f(vertex_coords[0], vertex_coords[1], vertex_coords[2])
             glEnd()
+
 
 
 

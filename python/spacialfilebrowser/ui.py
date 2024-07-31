@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QSplitter, QFileSystemModel, QTreeView, QVBoxLayout, QWidget
 from PyQt5.QtCore import Qt
-from .glwidget import GLWidget
+from spacialfilebrowser.glwidget import GLWidget
 
 class MainWindow(QMainWindow):
     def __init__(self):

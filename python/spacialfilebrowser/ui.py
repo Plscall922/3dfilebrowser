@@ -20,14 +20,16 @@ class MainWindow(QMainWindow):
 
         splitter.addWidget(self.tree)
 
-        # 3D Viewer placeholder
+        # 3D Viewer
         self.viewer = GLWidget()
         splitter.addWidget(self.viewer)
 
         self.setCentralWidget(splitter)
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = MainWindow()
-    window.show()
-    sys.exit(app.exec_())
+        self.tree.selectionModel().selectionChanged.connect(self.on_selection_changed)
+
+    def on_selection_changed(self, selected, deselected):
+        index = self.tree.selectionModel().currentIndex()
+        file_path = self.model.filePath(index)
+        if file_path.endswith(('.obj', '.dae', '.3ds')):
+            self.viewer.loadModel(file_path)

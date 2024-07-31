@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QSplitter, QFileSystemMod
 from PyQt5.QtCore import Qt
 from spacialfilebrowser.glwidget import GLWidget
 
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()

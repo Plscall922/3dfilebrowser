@@ -33,3 +33,10 @@ class MainWindow(QMainWindow):
         file_path = self.model.filePath(index)
         if file_path.endswith(('.obj', '.dae', '.3ds')):
             self.viewer.loadModel(file_path)
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec_())
